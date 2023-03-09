@@ -8,11 +8,72 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <style>
-body,p,h1,h2,h3,h4,h5,h6 {font-family: Palatino Linotype, sans-serif}
+/* body,p,h1,h2,h3,h4,h5,h6 {font-family: Roboto, sans-serif} */
 
-body, html {
+/* body, html {
   height: 100%;
   line-height: 1.8;
+} */
+
+body {
+  background-color: #f5f5f5;
+  font-family: Roboto, sans-serif;
+  color: #333;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+h1 {
+  margin: 0px 0px 18px;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 43px;
+  line-height: 47px;
+  font-weight: 500;
+}
+
+h2 {
+  margin: 30px 0px 20px;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 28px;
+  line-height: 31px;
+  font-weight: 400;
+}
+
+h3 {
+  margin: 10px 0px;
+  font-size: 24px;
+  line-height: 30px;
+  font-weight: 700;
+}
+
+h4 {
+  margin: 10px 0px 18px;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 400;
+}
+
+h5 {
+  margin: 5px 0px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+}
+
+h6 {
+  margin: 10px 0px;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 700;
+}
+
+p {
+  margin-top: 0px;
+  margin-bottom: 15px;
+  font-family: 'Roboto Slab', sans-serif;
+  font-size: 16px;
+  line-height: 23px;
+  font-weight: 300;
 }
 
 /* Full height image header */
@@ -51,119 +112,435 @@ body, html {
 .w3-bar .w3-button {
   padding: 16px;
 }
+
+/* Split the screen in half */
+/* .split {
+  height: 100%;
+  width: 44%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+} */
+
+/* Control the left side
+.left {
+  left: 0;
+  background-image: url("./img/dash.jpg");
+  background-size: contain;
+}
+
+Control the right side
+.right {
+  right: 0;
+  background-color: red;
+}
+
+If you want the content centered horizontally and vertically
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+} */
+
+/* Style the image inside the centered container, if needed */
+/* .centered img {
+  width: 150px;
+  border-radius: 50%;
+} */
+
+
+/*Start of new website styling*/
+
+.all-content {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+}
+
+/* * {
+  box-sizing: border-box;
+} */
+
+a {
+  /* box-sizing: border-box; */
+  background-color: transparent;
+  /* width: 720px;
+  height: 122.5px;
+  padding: 40px 40px 40px 40px; */
+}
+
+.main-column {
+    position: relative;
+    width: 50%;
+    height: 100%;
+    float: left;
+}
+.main-column.header {
+    max-width: 600px;
+    padding-top: 164px;
+    padding-right: 15px;
+    padding-left: 15px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url("./img/dash.jpg");
+    background-position: 31% 50%;
+    background-size: cover;
+    /* filter: brightness(50%); */
+    box-shadow: inset -3px 0 0 0 rgb(0 0 0 / 28%);
+    color: lightcyan;
+    text-align: center;
+    text-shadow: 0 1px 0 rgb(0 0 0 / 64%);
+}
+
+.main-column.content {
+    overflow: scroll;
+    max-width: 800px;
+    background-color: #fff;
+    box-shadow: inset -1px 0 0 0 rgb(0 0 0 / 12%);
+    font-family: Roboto, sans-serif;
+    font-weight: 400;
+}
+
+.h7 {
+    color: red;
+    display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
+.big-tagline {
+    margin-bottom: 68px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 45px;
+    line-height: 54px;
+    font-weight: 300;
+}
+
+.logo {
+    display: inline-block;
+    margin-top: 0px;
+    margin-bottom: 31px;
+    padding: 21px;
+    border: 8px solid hsla(0, 0%, 100%, 0.38);
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 78px;
+    line-height: 60px;
+    font-weight: 400;
+}
+
+/*ARTICLE*/
+.article {
+    position: relative;
+    z-index: 3;
+    display: block;
+    padding: 40px;
+    box-shadow: 0 1px 0 0 rgb(0 0 0 / 12%);
+    -webkit-transition: background-color 300ms ease, color 300ms ease;
+    transition: background-color 300ms ease, color 300ms ease;
+    color: #000;
+    text-decoration: none;
+}
+
+.article:hover {
+  background-color: #fcfcfc;
+  color: #0050b8;
+}
+
+.article.suggested {
+  width: 100%;
+  padding: 22px;
+  float: left;
+  border-top: 1px solid rgba(0, 0, 0, 0.09);
+  border-right: 1px solid rgba(0, 0, 0, 0.09);
+  border-left: 1px solid rgba(0, 0, 0, 0.09);
+  box-shadow: none;
+}
+
+.article.suggested.last {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+  box-shadow: none;
+}
+
+.w-inline-block {
+  max-width: 100%;
+  display: inline-block;
+}
+
+.w-clearfix:before {
+  content: " ";
+  display: table;
+  grid-column-start: 1;
+  grid-row-start: 1;
+  grid-column-end: 2;
+  grid-row-end: 2;
+}
+.w-clearfix:after {
+  clear: both;
+}
+
+.image-wrapper {
+  width: 20%;
+  padding-right: 10px;
+  float: left;
+  text-align: center;
+}
+
+.thumbnail {
+    margin-right: 10px;
+    padding: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.09);
+    background-color: #fcfcfc;
+}
+
+.article-text-wrapper {
+  width: 80%;
+  padding-left: 10px;
+  float: left;
+}
+
+.arrow {
+  margin-top: 0px;
+  float: right;
+  font-size: 23px;
+}
+
+.article-info-wrapper {
+  margin-top: 13px;
+}
+
+.article-info-text {
+  display: inline-block;
+  margin-right: 6px;
+  font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+  color: rgba(0, 0, 0, 0.34);
+  font-size: 12px;
+  line-height: 10px;
+}
+
+.article-info-text.tag {
+  display: inline-block;
+  padding: 4px 7px;
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  border-radius: 30px;
+  text-transform: none;
+}
+
+/*NAVBAR*/
+.navbar {
+    background-color: #fff;
+    box-shadow: 0 1px 0 0 rgb(0 0 0 / 12%), inset -1px 0 0 0 rgb(0 0 0 / 12%);
+}
+
+.w-nav {
+    position: relative;
+    background: #dddddd;
+    z-index: 1000;
+}
+
+.nav-link {
+  padding: 19px 22px;
+  box-shadow: inset -1px 0 0 0 rgba(0, 0, 0, 0.12), 0 -1px 0 0 transparent;
+  font-family: 'Roboto Condensed', sans-serif;
+  color: #333;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.nav-link:hover {
+  background-color: transparent;
+  box-shadow: inset -1px 0 0 0 rgba(0, 0, 0, 0.12), 0 1px 0 0 #000;
+}
+
+.nav-link.w--current {
+  box-shadow: inset -1px 0 0 0 rgba(0, 0, 0, 0.12), 0 1px 0 0 #00b874;
+  color: #00b874;
+}
+
+.nav-link.w--current:hover {
+  background-color: transparent;
+}
+
+.nav-link.page {
+  padding-right: 28px;
+  padding-left: 28px;
+}
+
 </style>
 
 <body>
 <!-- If you change something in the Navbar you have to change it on each page (sit on top) -->
 <!-- MAKE SURE YOU GET THE RELATIVE PATHS RIGHT FOR THE NAV BAR!!!!-->
-<div class="w3-top">
+<!-- <div class="w3-top">
   <div class="w3-bar w3-white w3-card" id="myNavbar">
     <a href="#home" class="w3-bar-item w3-button w3-wide">RSS Team TA</a>
-    <!-- Right-sided navbar links -->
+    Right-sided navbar links
     <div class="w3-right w3-hide-small">
       <a href="#about" class="w3-bar-item w3-button">About</a>
       <a href="labs/" class="w3-bar-item w3-button"><i class="fa fa-folder"></i>Labs</a>
       <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="w3-bar-item w3-button"><i class="fa fa-camera"></i>Videos</a>
       <a href="https://github.com/mit-rss" class="w3-bar-item w3-button"><i class="fa fa-github-square"></i>Github</a>
     </div>
-    <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+    Hide right-floated links on small screens and replace them with a menu icon
 
     <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
       <i class="fa fa-bars"></i>
     </a>
   </div>
-</div>
+</div> -->
 
 
 <!-- Sidebar on small screens when clicking the menu icon -->
-<nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidebar">
+<!-- <nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidebar">
   <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close X</a>
   <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button">About</a>
   <a href="labs/" onclick="w3_close()" class="w3-bar-item w3-button">Labs</a>
   <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" onclick="w3_close()" class="w3-bar-item w3-button">Videos</a>
   <a href="https://github.com/mit-rss" onclick="w3_close()" class="w3-bar-item w3-button">Github</a>
-</nav>
+</nav> -->
 <!-- End of repeated content on each page-->
 
 
+
+
+
+<div class="all-content w-clearfix">
+  <header class="main-column header">
+    <h7 class="logo">6.4200</h7>
+    <div class="big-tagline">
+      Team 11
+      <br>
+      Dash
+    </div>
+    <!-- <div class="centered">
+      <img src="img/jessica.jpg" alt="Avatar woman">
+      <h2>Jane Flex</h2>
+      <p>Some text.</p>
+    </div> -->
+  </header>
+  <div class="main-column content">
+    <!-- <div class="w3-top">
+      <div class="w3-bar w3-white w3-card" id="myNavbar">
+        Right-sided navbar links
+        <div class="navbar">
+          <a href="#about" class="w3-bar-item w3-button">About</a>
+          <a href="labs/" class="w3-bar-item w3-button"><i class="fa fa-folder"></i>Labs</a>
+          <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="w3-bar-item w3-button"><i class="fa fa-camera"></i>Videos</a>
+          <a href="https://github.com/mit-rss" class="w3-bar-item w3-button"><i class="fa fa-github-square"></i>Github</a>
+        </div>
+        Hide right-floated links on small screens and replace them with a menu icon
+        <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
+          <i class="fa fa-bars"></i>
+        </a>
+      </div>
+    </div> -->
+    <nav data-collapse="small" data-animation="default" data-duration="400" role="banner" class="navbar w-nav">
+      <nav role="navigation" class="nav-menu w-nav-menu">
+        <a href="/" class="nav-link w-nav-link w--current">Home</a>
+        <a href="#about" class="nav-link w-nav-link">About</a>
+          <a href="labs/" class="nav-link w-nav-link">Labs</a>
+          <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="nav-link w-nav-link">Videos</a>
+          <a href="https://github.com/mit-rss" class="nav-link w-nav-link">Github</a>
+      </nav>
+  </nav>
+
+    <a href="labs/" class="article w-inline-block w-clearfix">
+      <div class="image-wrapper">
+        <img src="img/car-stata.jpeg" width="109" alt class="thumbnail">
+      </div>
+      <section class="article-text-wrapper w-clearfix">
+        <h2 class="arrow">❯</h2>
+        <h2 class="thumbnail-title">Lab 3 Wall Follower</h2>
+        <p>This is a description of our lab 3 wall follower code</p>
+        <div class="article-info-wrapper">
+          <div class="article-info-text">March 2, 2013</div>
+          <div class="article-info-text tag">Visual</div>
+          <div class="article-info-text tag">LiDAR</div>
+        </div>
+      </section>
+    </a>
+    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="article w-inline-block w-clearfix">
+      <div class="image-wrapper">
+        <img src="img/car22.jpg" width="109" alt class="thumbnail">
+      </div>
+      <section class="article-text-wrapper w-clearfix">
+        <h2 class="arrow">❯</h2>
+        <h2 class="thumbnail-title">Lab 4 Visual Cones</h2>
+        <p>This is a description of our lab 4 wall follower code</p>
+        <div class="article-info-wrapper">
+          <div class="article-info-text">March 2, 2013</div>
+          <div class="article-info-text tag">Visual</div>
+          <div class="article-info-text tag">Data Cleanse</div>
+        </div>
+      </section>
+    </a>
+    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="article w-inline-block w-clearfix">
+      <div class="image-wrapper">
+        <img src="img/teampic1.jpg" width="109" alt class="thumbnail">
+      </div>
+      <section class="article-text-wrapper w-clearfix">
+        <h2 class="arrow">❯</h2>
+        <h2 class="thumbnail-title">Lab 5 SOMETHING</h2>
+        <p>This is a description of our lab 5 wall follower code</p>
+        <div class="article-info-wrapper">
+          <div class="article-info-text">March 2, 2013</div>
+          <div class="article-info-text tag">LiDAR</div>
+          <div class="article-info-text tag">Visual</div>
+        </div>
+      </section>
+    </a>
+
+  </div>
+</div>
+
 <!-- Header with full-height image -->
-<header class="title_img w3-display-container w3-grayscale-min" id="home">
+<!-- <header class="title_img w3-display-container w3-grayscale-min" id="home">
   <div class="w3-display-bottommiddle w3-text-white w3-center">
     <h1>Team TA!</h1>
     <p><a href="https://youtu.be/xLZU6TcSmRo" style="width:100%" class="w3-button w3-white w3-opacity w3-hover-opacity-off">
         Innovation starts somewhere, so why not let it start here?
     </a></p>
   </div>
-</header>
+</header> -->
 
-<div class="w3-container w3-white" style="padding:5% 5%">
-  <div class="w3-card team_member">
-      <img class="headshot" src="img/jessica.jpg">
-      <h4>Jessica Wu</h4>
-      <p>wujl@mit.edu</p>
-      <p>Hi! I'm Jess, a junior of course 6-3. I've loved robots since high school, 
-        and particularly enjoy watching robots be both much smarter and much dumber than humans.
-      </p>
-  </div>
-  <div class="w3-card team_member">
-      <img class="headshot" src="img/nicole.jpg">
-      <h4>Nicole Shigiltchoff</h4>
-      <p>nicolesh@mit.edu</p>
-      <p>Hello :) I'm Nicole, and I'm a junior in course 6-9. I am a big lover of the organic
-        brain, but I'm interested in seeing how we can replicate "intelligent" behavior synthetically.
-      </p>
-  </div>
-  <div class="w3-card team_member">
-      <img class="headshot" src="img/timothy.png">
-      <h4>Timothy Kostolansky</h4>
-      <p>timkosto@mit.edu</p>
-      <p>
-        Hi! I'm Tim, a beaver studying computer science (6-3) and physics (8). The state of machine learning today is so cool to me, and I think that robotics is an exciting area to apply ML techniques and engineering.
-      </p>
-  </div>
-  <div class="w3-card team_member">
-      <img class="headshot" src="img/christina.jpg">
-      <h4>Christina Chen</h4>
-      <p>chrichen@mit.edu</p>
-      <p>Heyo :) I'm Christina, a senior in 2A-6, 15-1 minor, so intersectionality of disciplines appeals to me. I adore hands-on creations and connecting with diverse people and cultures. I'm a big nature-lover and courageous learner, and I'm ready to tackle this Robotics class!
-      </p>
-  </div>
-  <div class="w3-card team_member">
-      <img class="headshot" src="img/wall_e.jfif">
-      <h4>Tim Beaver</h4>
-      <p>tbeaver@mit.edu</p>
-      <p>These are some template bios; fill this in for each of your team members!
-      </p>
-  </div>
-</div>
 
 <!-- Contact Section -->
-<div class="w3-container w3-grey" style="padding:5% 5%;text-align:center;" id="about">
+<!-- <div class="w3-container w3-grey" style="padding:5% 5%;text-align:center; background-image: url('./img/team11.png');" id="about">
   <div class="w3-card w3-white" style="width:100%">
     <h1>About Us</h1>
   </div>
   <div class="w3-cell w3-red" style="width:30%;float:left;min-height: 200px;">
-      <i class="fa fa-folder"></i> <!--Put an image here or something?-->
+      <i class="fa fa-folder"></i> 
       <p>Do something that is unique here. (You can change this to team values or something?)</p>
   </div>
   <div class="w3-cell w3-white" style="width:30%;margin-left:5%;float:left;min-height: 200px;">
-      <i class="fa fa-folder"></i><!--Put an image here or something?-->
+      <i class="fa fa-folder"></i>
       <p>The TAs are not that unique, so we are just writing a lot of filler things here so we look cool.</p>
   </div>
   <div class="w3-cell w3-blue" style="width:30%;margin-left:5%;float:left;min-height: 200px;">
-      <i class="fa fa-folder"></i><!--Put an image here or something?-->
+      <i class="fa fa-folder"></i>
       <p>Si vos es pulchellus frigus hanc: et admonitus in hoc genere digna est. It tristis et non dederint tibi. Benediximus</p>
   </div>
-</div>
+</div> -->
 
 
 </body>
 
 <!-- Footer -->
-<footer class="w3-center w3-black w3-padding-64">
-  <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
-  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+<footer>
+  <!-- <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a> -->
+  <!-- <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p> -->
 </footer>
+</div>
 
 <script>
 // Modal Image Gallery
