@@ -6,9 +6,13 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto" rel="stylesheet">
 
 <style>
-/* body,p,h1,h2,h3,h4,h5,h6 {font-family: Roboto, sans-serif} */
+  @import url('https://fonts.googleapis.com/css2?family=Roboto');
+/* body,p,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif} */
 
 /* body, html {
   height: 100%;
@@ -17,7 +21,7 @@
 
 body {
   background-color: #f5f5f5;
-  font-family: Roboto, sans-serif;
+  font-family: "Roboto", sans-serif;
   color: #333;
   font-size: 14px;
   line-height: 20px;
@@ -282,27 +286,37 @@ a {
   grid-column-end: 2;
   grid-row-end: 2;
 }
-.w-clearfix:after {
+/* .w-clearfix:after {
   clear: both;
+} */
+.w-clearfix:after {
+    content: " ";
+    display: table;
+    grid-column-start: 1;
+    grid-row-start: 1;
+    grid-column-end: 2;
+    grid-row-end: 2;
 }
 
 .image-wrapper {
   width: 20%;
-  padding-right: 10px;
+  padding: 20px 0px 20px 10px;
   float: left;
   text-align: center;
 }
 
 .thumbnail {
     margin-right: 10px;
-    padding: 4px;
+    /* padding-top: 30%; */
+    padding: 20px 0px 0px 0px;
     border: 1px solid rgba(0, 0, 0, 0.09);
     background-color: #fcfcfc;
+    max-width: 100%;
 }
 
 .article-text-wrapper {
   width: 80%;
-  padding-left: 10px;
+  padding-left: 30px;
   float: left;
 }
 
@@ -341,7 +355,7 @@ a {
 
 .w-nav {
     position: relative;
-    background: #dddddd;
+    /* background: #dddddd; */
     z-index: 1000;
 }
 
@@ -373,6 +387,28 @@ a {
 .nav-link.page {
   padding-right: 28px;
   padding-left: 28px;
+}
+
+.header-container {
+    padding-top: 66px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+.menu {
+  margin-top: 1px;
+  float: right;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 17px;
+}
+.menu-icon {
+  margin-right: 5px;
+  float: left;
+}
+.menu-wrapper {
+  border-left: 1px solid rgba(0, 0, 0, 0.09);
+}
+.menu-wrapper.w--open {
+  background-color: #000;
 }
 
 </style>
@@ -451,6 +487,10 @@ a {
           <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="nav-link w-nav-link">Videos</a>
           <a href="https://github.com/rss2023-11" class="nav-link w-nav-link">Github</a>
       </nav>
+      <!-- <div class="menu-wrapper w-clearfix w-nav-button">
+        <div class="menu">MENU</div>
+        <div class="menu-icon w-icon-nav-menu"></div>
+      </div> -->
     </nav>
 
     <a href="labs/" class="article w-inline-block w-clearfix">
