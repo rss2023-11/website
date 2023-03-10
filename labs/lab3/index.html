@@ -40,58 +40,43 @@
                 <div class="w-row">
                     <div class="article-body-column w-col w-col-8">
                         <h1 class="article-heading">Lab 3: WallFollow your Dreams</h1>
-                        <p class="subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. .</p>
-                        <p class="quote">“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra.”</p>
+                        <p class="subtitle"></p>
+                            <h2>Challenge</h2>
+                            <p>Up until Lab 3, we were individually simulating a racecar and how its LiDAR data interacts with our code in a feedback control loop. This week, our team came together for the first time to combine the algorithms used in our simulation code and implement a wall follower on a physical racecar for testing in real world scenarios. 
+                            Our first challenge was to implement a method for collaborating on our code. We needed a system to share and merge our code, as well as upload it onto the racecar’s computer. The second challenge was to create and implement an algorithm for a wall follower that could drive the robot at a desired distance from a wall with minimal oscillation along straight edges, as well as turn inner and outer corners with minimal deviation from the desired distance. The highest- performing parts of our individual simulation programs needed to be combined into one wall follower, and the LiDAR data needed to be processed with different parameters than in our simulations due to its imperfections. The last challenge was to create a safety controller algorithm that would override any autonomous movements if there was an instance that the racecar should stop. This ensured that our expensive and powerful racecar would be safe to operate throughout this lab and any testing in the future. 
+                            </p>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. <em>Nunc ut sem vitae</em>
-                            risus tristique posuere. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.
-                        </p>
-                        <h2>Something new is coming</h2>
+                            Motivations for lab 3 included learning how to establish connections between our computers and the racecar and ensuring that all team members knew how to upload and download code from the cars. Additionally, we needed to learn how to create autonomous algorithms that run both effectively and safely in a world where input data is almost always noisy. 
+                            Building interpersonal connections between team members was also important for this lab, as this was the first time we were working together. Learning more about each others’ strengths, technical backgrounds, and work styles helped us more smoothly collaborate on our code and accomplish deliverables faster.
+                            </p>
+                        <h2>Technical Approach</h2>
+                        <h4>Robot Setup and Robot-Computer Connection</h4>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. <em>Nunc ut sem vitae</em>
-                            risus tristique posuere.
+                            In order to familiarize ourselves with the hardware necessary for this lab and determine its functionality, we followed the tutorial provided in the README.md file in the mit-rss wall_follower. We first identified the robot’s two batteries, one for the motor and the other for the microcontroller and the sensor, and determined how to turn them on and connect them to the appropriate components. Next, we connected the robot to a lab member’s computer. The connection between a robot and a computer is based on a wifi network from a nearby router, and both devices must be logged onto the network to allow for code to be downloaded from and uploaded to the robot using Remote Synch (rsynch), a tool used to sync files between remote and local servers.
+                            To test the functionality of all the robot components, we used teleop (a set of scripts to allow teleoperation) to connect a controller to the robot. We then manually operated the robot to test forwards and backward driving, as well as turning right and left.
+                            </p>
+                            <h4>Wall Follower Algorithm Development and Optimization</h4>
+                            <p>Our wall follower algorithm uses LiDAR data from the Hokuyo LiDAR device mounted on the front of the robot to estimate its surroundings. This algorithm used the data similarly to the wall followers we each wrote for Lab 2: we collected and filtered distance data from the LiDAR sensor to ensure that the robot was only looking at data in a relevant range, estimated the robot’s error from its ideal path, and adjusted the steering angle using a proportional-derivative (PID) controller. 
+                            In order to reduce noise in our sample data, we filtered out points that were too far from the robot. We knew that the scope of this lab did not require that our robot find walls further than 3 meters away, so any LiDAR data that indicated a point greater than 3 meters away from the robot was discarded. Then, we cut all of the LiDAR data into three sections—right, left, and front. We took data from either the left or right section, depending on a variable parameter, and converted the data from polar into cartesian coordinates for more convenient calculating in subsequent steps. Next, we used those points to estimate the location of the wall with a straight line using least-squares linear regression. We then add our desired distance from the wall to find our robot’s desired path. 
+                            We assume that this estimated desired path is very close to the optimal path of our robot. We calculate the error of the robot, defined as the distance from its optimal path, and use the error to determine how the robot should turn to minimize that error. Using a PD controller with the error and its derivative over time, we allowed the car to adjust itself in arriving to the desired path accurately. We manually adjusted the constants used in the PD controller formula to minimize the aggregate error at different speeds, starting angles relative to the wall, and wall following distances.
+                            </p>
+                            <h4>Designing and implementing the safety controller</h4>
+                            <p>For our safety controller, we used a relatively simple algorithm using the minimum front distance measurement. The data we use are the radial distances of the center front thirty degrees of the LiDAR scanning data. While iterating through the data searching for the minimum, we reduce the noise of individual data samples by taking the mean of three consecutive data points at a time and then iteratively compare all of the means to find the minimum distance. This does not cancel out noise completely, but it effectively reduces the impact of outlier data points caused by noise, assuming that noise affects pixels individually. 
+                            To test our safety controller, we ran experimental trials to evaluate how successfully the robot avoids collisions, which we describe in the next section.
                         </p>
-                        <div class="images">
-                            <img src="https://assets.website-files.com/52f2c8085d8eed2b6b000300/52f320b1593f6edf41000793_thumb11.jpg" width="109" alt="" class="thumbnail"/>
-                            <img src="https://assets.website-files.com/52f2c8085d8eed2b6b000300/52f3209473df7f296b0005bb_thumb14.jpg" width="109" alt="" class="thumbnail"/>
-                            <img src="https://assets.website-files.com/52f2c8085d8eed2b6b000300/52f320a273df7f296b0005be_thumb10.jpg" width="109" alt="" class="thumbnail"/>
-                            <img src="https://assets.website-files.com/52f2c8085d8eed2b6b000300/52f320c9ba5496e141000730_thumb3.jpg" width="109" alt="" class="thumbnail"/>
-                            <img src="https://assets.website-files.com/52f2c8085d8eed2b6b000300/52f320dcba5496e141000734_thumb7.jpg" width="109" alt="" class="thumbnail"/>
-                            <div class="image-text">Here &#x27;s some text about this photo.</div>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. </p>
+                            
+                        <h2>What We Learned</h2>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. <em>Nunc ut sem vitae</em>
-                            risus tristique posuere. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.
+                            For lab 3, our team successfully designed and implemented a wall following algorithm that allowed our robot to follow a wall located on either the right or left side of itself. The robot can successfully turn in both inner and outer corners while staying close to the desired distance from the wall, as well as find and follow a wall from a starting position far from a wall. Talk about data and error. This implementation can allow the robot to systematically traverse through uncharted spaces, such as in solving a physical maze.
+                        Additionally, we designed and implemented a safety controller to prevent front collisions. This safety system prevents the robot from driving into stationary and dynamic obstacles and is meant to protect the robot from physical damage in the current and future labs.
+
                         </p>
-                        <div class="images">
-                            <img src="https://assets.website-files.com/52f2c8085d8eed2b6b000300/52f3d14073df7f296b000feb_jeep.jpg" srcset="https://assets.website-files.com/52f2c8085d8eed2b6b000300/52f3d14073df7f296b000feb_jeep-p-1080x810.jpeg 1080w, https://assets.website-files.com/52f2c8085d8eed2b6b000300/52f3d14073df7f296b000feb_jeep-p-1600x1200.jpeg 1600w, https://assets.website-files.com/52f2c8085d8eed2b6b000300/52f3d14073df7f296b000feb_jeep-p-2000x1500.jpeg 2000w, https://assets.website-files.com/52f2c8085d8eed2b6b000300/52f3d14073df7f296b000feb_jeep.jpg 2048w" sizes="(max-width: 767px) 96vw, (max-width: 991px) 478.65625px, 619.984375px" alt="" class="big-image"/>
-                            <div class="image-text">Here &#x27;s some text about this photo.</div>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.</p>
-                        <div class="share-article-wrapper w-clearfix">
-                            <h4>Loved it? Share it.</h4>
-                            <div class="share-btn w-widget w-widget-twitter">
-                                <div class="w-widget-twitter-count-shim w--vertical">
-                                    <div class="w-widget-twitter-count-inner">...</div>
-                                </div>
-                                <div class="w-widget-twitter-count-clear"></div>
-                                <iframe src="//platform.twitter.com/widgets/tweet_button.html#url=http%3A%2F%2Fwebflow.com&amp;counturl=webflow.com&amp;text=Check%20out%20this%20site&amp;count=vertical&amp;size=m&amp;dnt=true" scrolling="no" frameborder="0" allowtransparency="true" style="border: none; overflow: hidden; width: 62px; height: 21px;"></iframe>
-                            </div>
-                            <div class="share-btn facebook w-widget w-widget-facebook">
-                                <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Ffacebook.com%2Fwebflow&amp;layout=box_count&amp;locale=en_US&amp;action=like&amp;show_faces=false&amp;share=false" scrolling="no" frameborder="0" allowtransparency="true" style="border: none; overflow: hidden; width: 55px; height: 65px;"></iframe>
-                            </div>
-                            <div class="share-btn w-widget w-widget-gplus">
-                                <div class="g-plusone" data-href="http://webflow.com" data-size="tall" data-annotation="bubble" data-recommendations="false"></div>
-                            </div>
-                        </div>
+                        
                     </div>
                     <div class="author-column w-clearfix w-col w-col-4">
                         <h4 class="w-hidden-main w-hidden-medium">About the Author</h4>
-                        <img src="https://assets.website-files.com/52f2c8085d8eed2b6b000300/52f3d2855d8eed2b6b0012ab_Profile-pic.jpg" width="125" alt="" class="author-image"/>
-                        <h2>Jimmy Huarez</h2>
+                        <img src="./../../img/dash.jpg" width="125" alt="" class="author-image"/>
+                        <h2>Team 11</h2>
                         <p class="about-text">Jimmy started ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique</p>
                         <div class="article-info-wrapper">
                             <div class="article-info-text">March 2, 2014</div>
@@ -99,7 +84,7 @@
                             <div class="article-info-text tag">Nature</div>
                         </div>
                         <div class="author-social-links">
-                            <div class="author-connect">Connect with the author</div>
+                            <div class="author-connect">Connect with the team</div>
                             <a href="#" class="social-link w-inline-block">
                                 <img src="https://assets.website-files.com/52f2c8085d8eed2b6b000300/52f31c8e593f6edf4100071a_twitter-icon_black.svg" alt=""/>
                             </a>
@@ -114,7 +99,7 @@
                 </div>
             </div>
         </div>
-        <div class="subscribe-section">
+        <!-- <div class="subscribe-section">
             <div class="w-container">
                 <h2 class="alternative-h2">Get the latest articles in your inbox</h2>
                 <div class="form-wrapper w-form">
@@ -189,7 +174,7 @@
                 <a href="/about" class="footer-link">about</a>
                 <a href="/subscribe" class="footer-link">subscribe</a>
             </div>
-        </div>
+        </div> -->
         <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=52f2c8085d8eed2b6b000300" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
         <script src="https://assets.website-files.com/52f2c8085d8eed2b6b000300/js/webflow.873472829.js" type="text/javascript"></script>
         <!--[if lte IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
