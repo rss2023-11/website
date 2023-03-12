@@ -71,7 +71,7 @@ In order to reduce noise in our sample data, we filtered out points that were to
 
                             </p>
                             <img src="./../img/lab3images/physical-car.png" alt=""/>
-                            <div class="image-text" style="text-align: center; padding-bottom: 1em;">Physical setup of racecar</div>
+                            <div class="image-text" style="text-align: center; padding-bottom: 1em;">Racecar physical structure depicts battery ports, censor, computer, and router location, which are important areas to understand for connection and debugging</div>
                         
                             <p>
                                 We assume that this estimated desired path is very close to the optimal path of our robot. We calculate the error of the robot, defined as the distance from its optimal path, and use the error to determine how the robot should turn to minimize that error. And this process is the core of our wall-following algorithm. In addition to that, we also inserted two edge case checks in the algorithm. For one, the robot may be swiftly approaching the wall in the front, which the left/right side data does not inform us of. So we add a check at the very beginning that the robot steers away immediately if it detects a wall in front. We also added a check after filtering the data in case it does not detect any walls around itself, in which case it turns at a preset angle in search of a wall. The final decision-making process our robot follows is visualized in figure 3.  
@@ -83,7 +83,7 @@ In order to reduce noise in our sample data, we filtered out points that were to
                                 Using a Proportional Derivative (PD) controller with the error and its derivative over time, we decreased the racecar’s deviation from the desired path. The derivative of the error was included in order to prevent overcorrection as the car approached its desired path. We chose a PD controller because almost all group members found it to improve wall following accuracy in our simulation as opposed to Proportional control (not including the derivative of the error), but did no better than Proportional Integral Derivative (PID) control, a more complex controller that also includes the integral of the error. The equation we used to calculate the adjusted error is 
                             </p>
                             <img src="./../img/lab3images/lidar scan slicing.jpg" alt=""/>
-                            <div class="image-text" style="text-align: center; padding-bottom: 1em;">LiDAR data collection diagram</div>
+                            <div class="image-text" style="text-align: center; padding-bottom: 1em;">LiDAR data collection diagram depicting our algorithm that searches 3 separate sections depending on functionality of code</div>
                         
                             <p>
                                 A(t) = K_P*e(t) + K_D*(d/dt)*e(t)
@@ -98,7 +98,7 @@ T_{stop} = K_v*v_{car}
 With T_{stop} being the distance (m) the car stops away from the wall, K_v being a constant we manually adjusted and tested, and v_{car} being the current speed of the racecar. This threshold is designed to provide enough braking distance for the car to stop before making contact with an obstacle in front of it.
                             </p>
                             <img src="./../img/lab3images/wall_follower_flowchart.jpg" alt=""/>
-                            <div class="image-text" style="text-align: center; padding-bottom: 1em;">Wall follower algorithm diagram</div>
+                            <div class="image-text" style="text-align: center; padding-bottom: 1em;">Algorithm of wall follower code depicts racecar movements and decisions that leads it to successfully follow wall and turns corners</div>
                         
                             <p>
                                 If three consecutive LiDAR data points were observed to be below the minimum threshold, the safety controller perceived that to be an obstacle in front of the car and would cause the car to brake. Three consecutive LiDAR data points were chosen to avoid the racecar stopping in response to noisy LiDAR data, where it was possible that one or two data points perceived to be too close were just noise. Though this method does not cancel out noise completely, it effectively reduces the impact of outlier data points caused by noise, assuming that noise affects pixels individually. 
@@ -109,7 +109,11 @@ With T_{stop} being the distance (m) the car stops away from the wall, K_v being
                         <p>
                             All parameter evaluation was done by setting the racecar parallel to a wall 1 meter away from the right side of the car. The desired wall-following distance was set to 0.5 meters, and the side to wall-follow was set to the right side. The wall following distance and wall side were kept constant for all tests and were not varied due to time constraints. The safety controller was run during all tests to protect the car from damage.
 	All trials are labeled “PID-Kp-0-Kd-v” with Kp, Kd, and v being the same as described previously and 0 representing the use of PD control as opposed to PID control.
-	The first step to determining the PD constants was to choose a Kp constant that allows the robot to quickly approach 0 error between its actual and desired distance away from the wall. We set Kp equal to five different values ranging from .25 to 2, and set the velocity to 1 m/s, as that was slow enough to ensure that any collisions or accidents that could happen during the test could be prevented by either our safety controller or manually lifting the car off the ground. We observed that the racecar displayed oscillations with the smallest amplitude with a Kp of 0.5, allowing the car to approach 0 error the fastest (Figure 5).
+	</p>
+    <img src="./../img/lab3images/Safety controller diagram.jpg" alt=""/>
+                        <div class="image-text" style="text-align: center; padding-bottom: 1em;">Front LiDAR data visualization depicts the angle and distance that the computer takes in to use for safety controller</div>
+                        
+    <p><The first step to determining the PD constants was to choose a Kp constant that allows the robot to quickly approach 0 error between its actual and desired distance away from the wall. We set Kp equal to five different values ranging from .25 to 2, and set the velocity to 1 m/s, as that was slow enough to ensure that any collisions or accidents that could happen during the test could be prevented by either our safety controller or manually lifting the car off the ground. We observed that the racecar displayed oscillations with the smallest amplitude with a Kp of 0.5, allowing the car to approach 0 error the fastest (Figure 5).
                         </p>
                         <img src="./../img/lab3images/five.png" alt=""/>
                         <div class="image-text" style="text-align: center; padding-bottom: 1em;">Error from Desired Path over Time for Kp Tuning</div>
@@ -174,7 +178,7 @@ With T_{stop} being the distance (m) the car stops away from the wall, K_v being
                         <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTbr2PT7v3jlheeKQbW4zraD9EBVlxjbq_zcFVwJwoIk7ccfdG4pEjhNQcL9xI9rUuv2UiVo71Wqhih/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
                         <!-- <iframe class="author-image" src="https://docs.google.com/presentation/d/e/2PACX-1vRpW1Xoe9_g0XDnndzGZCJ7oWnZjtMupPmKlLa4PvGi_4eqlTEPjfyD1P0sq6FPt-flkR9QEF-b5H6f/embed?start=true&loop=true&delayms=3000" frameborder="0" width=95% height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe> -->
                         <object data="../../latex_report/Lab_3_Report_new_font.pdf" type="application/pdf" width="720px" height="935px">
-                            <embed src="../../latex_report/Lab_3_Report_new_font.pdf">
+                            <embed src="../../latex_report/Lab_3_Report_w-equations.pdf">
                             </embed>
                         </object>
                     </div>
@@ -186,7 +190,7 @@ With T_{stop} being the distance (m) the car stops away from the wall, K_v being
                           </video>
                         <h2>Team 11</h2>
                         <p class="about-text"><a href="https://docs.google.com/presentation/d/1k2WVcQeFsrBRC-2cqS9EDZi2sXbFOI95THUmQsWp3K4/edit?usp=sharing">Link to Presentation</a></p>
-                        <p class="about-text"><a href="../../latex_report/Lab_3_Report_new_font.pdf" download>Link to Download Lab Report</a></p>
+                        <p class="about-text"><a href="../../latex_report/Lab_3_Report_w-equations.pdf" download>Link to Download Lab Report</a></p>
                         <p class="about-text">Lab 3 was our first time collaborating with our teammates and our physical racecars. It was a fun journey, and we're excited to follow our dreams towards the upcoming labs</p>
                         <div class="article-info-wrapper">
                             <div class="article-info-text">March 10, 2023</div>
