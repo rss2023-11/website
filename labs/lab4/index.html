@@ -42,6 +42,29 @@
                         <h1 class="article-heading">Lab 4: VisualServing Looks</h1>
                         <p class="subtitle"></p>
                             <h2>Introduction</h2>
+                            <p>We are building our car to autonomously park in front of a cone, and follow a line. The car can access its zed camera and use pixel values to detect objects of certain hue. We create bounding boxes around the desired object color, and control our car movements based on that</p>
+                            <h2>Module 1: Cone Detection via Color Segmentation</h2>
+                            <ul>
+                                <li>Transform from RGB to HSV (find orange by hue)</li>
+                                <li>Put mask on object</li>
+                                <li>Run kernel over object to smooth out, instead of small orange, you do huge orange object</li>
+                            </ul>
+                            <h2>Module 2: Object Detection via Template Matching and SIFT</h2>
+                            <h2>Module 3: Transforming pixels to a plane via Homography</h2>
+                            <ul>
+                                <li>Transforming from 2D image to x-y coordinate</li>
+                                <li>Collecting 4 points, marking out physically, and in pixels, and using transformation matrix/homography</li>
+                                <li>Given assumption that car is flat</li>
+                                <li>Make a script to initialization</li>
+                            </ul>
+                            <h2>Module 4: Writing a parking controller</h2>
+                            <ul>
+                                <li>Make algorithm</li>
+                                <li>Move forward to desired distance if angle is right
+                                    Move backwards at an angle until done, and then move forward </li>
+                            </ul>       
+                            <h2>Synthesis: Deploying all components together; Application to line following</h2>
+
                         <br>
                         <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQKAOF4VtcPcyoMdBnGoe4fwGuaC44QslNvYhcvmWZy1TYPF1AK2zvFm87N6SdXdYWjKYvpn3b6FrLB/embed?start=true&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>                        <!-- <iframe class="author-image" src="https://docs.google.com/presentation/d/e/2PACX-1vRpW1Xoe9_g0XDnndzGZCJ7oWnZjtMupPmKlLa4PvGi_4eqlTEPjfyD1P0sq6FPt-flkR9QEF-b5H6f/embed?start=true&loop=true&delayms=3000" frameborder="0" width=95% height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe> -->
                     </div>
